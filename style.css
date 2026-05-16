@@ -1,0 +1,215 @@
+/* LOGIN DESIGNN HERE */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #f8f8f8;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: #fff;
+  border: 2px solid #b30000;
+  border-radius: 8px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #b30000;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #b30000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background: #800000;
+}
+
+.error-message {
+  background: #ffe5e5;
+  color: #b30000;
+  border: 1px solid #b30000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* --------------------------------WELCOME_MODULE------------------------------------ */
+
+
+h1 {
+  text-align: center;
+  color: #b30000;
+  margin-bottom: 20px;
+
+}
+
+.welcome {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  border: 1px solid #b30000;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #b30000;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background: #ffe5e5;
+}
+
+tr:hover {
+  background: #ffcccc;
+}
+
+a {
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 2px;
+}
+
+a[href*="update_module"] {
+  background: #b30000;
+  color: #fff;
+}
+
+a[href*="update_module"]:hover {
+  background: #800000;
+}
+
+a[href*="delete"] {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+a[href*="delete"]:hover {
+  background: #cc0000;
+}
+
+.announce_content {
+  display: grid;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius:50px;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    border-radius: 20px 20px 50px 50px;
+    box-shadow: 0 4px 10px rgba(69, 56, 56, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.announce_content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+}
+
+.announce_content h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+    background-color: #470505;
+    padding: 10px;
+    border-radius: 20px 20px 0px 0px
+}
+
+.annouce_content1 h2 {
+    margin: 0;
+    font-size: 14px;
+    padding: 20px;
+}
+
+.announce_wrapper {
+    width: 80%;
+    margin: 30px auto;
+}
+
+/* ----------------------------HEADER STYLE---------------------- */
+
+.nav {
+   display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #8b0000;
+}
+
+.nav li .logout {
+    margin-left: auto;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav ul li {
+  margin: 0;
+}
+
+.nav ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px 25px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav ul li a:hover {
+  background-color: #ff1a1a;
+}
