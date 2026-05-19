@@ -213,3 +213,28 @@ a[href*="delete"]:hover {
 .nav ul li a:hover {
   background-color: #ff1a1a;
 }
+
+#msg{
+    background-color: lightgreen;
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut{
+    0%{
+        opacity: 1;
+    }
+
+    80%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}

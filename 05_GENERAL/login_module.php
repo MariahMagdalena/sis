@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($pass == $row['pass']) {
                 $_SESSION["name"] = $name;
-
+                $_SESSION["message_validation"] = "";
                 $action = "Logged In";
                 $role = "admin";
 

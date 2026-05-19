@@ -33,12 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->bind_param("sssssss", $stID, $fname, $lname, $mname, $course, $section, $year);
 
-        try {
+        try {//try catch block to handle duplicate entry of student id number, since it is unique in the database
             if ($stmt->execute()) {
                 $validate =  "Student added successfully!";
                 $role = 'admin';
                 $action = "{$_SESSION['name']} ADDED $fname $mname $lname with student id number of $stID";
                 include('../06_FEATURES/history_query.php');
+                $_SESSION["message_validation"] = $validate;
                 header("Location: ../05_GENERAL/welcome_module.php");
                 exit();
             } else {

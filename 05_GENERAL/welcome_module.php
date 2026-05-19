@@ -12,12 +12,13 @@ if (isset($_POST['delete_selected'])) {
 
         $ids = $_POST['delete_ids'];
 
-        foreach ($ids as $id) { //history query to add multiple action of delete 
+        foreach ($ids as $id) { //for multiple delete ito, kada delete may record sa history
             $stmt = $conn->prepare("SELECT student_id_number, first_name, last_name FROM students WHERE id = ?");
             $stmt->bind_param("i", $id);
 
             $stmt->execute();
             $result = $stmt->get_result();
+            // get_result return a result set object, kaya pwede na natin gamitin yung fetch_assoc() method dito
             $row = $result->fetch_assoc();
 
             $role = "admin";
@@ -90,6 +91,11 @@ if (isset($_POST['delete_selected'])) {
         <button type="submit" name="delete_selected" onclick="return confirm('Delete Selected Students?')">Delete Selected</button>
 
         <h1>Students that are currently Enrolled</h1>
+        <?php
+        if (isset($_SESSION['message_validation'])) {
+            echo "<div id='msg'>{$_SESSION['message_validation']}</div>";
+            unset($_SESSION['message_validation']); }
+        ?>
         <table border="1">
             <th>Select</th>
             <th>First Name</th>
@@ -100,34 +106,34 @@ if (isset($_POST['delete_selected'])) {
             <th>Year</th>
             <th>Student Id #</th>
             <th>Actions</th>
-            
-                <?php
-                include('../06_FEATURES/search_module.php');
-                // search module to nasa seperated file para reusable 👍👍👍
-                while ($row = $result->fetch_assoc()) {
-                ?>
-            <tr>
-                <td><input type="checkbox" name="delete_ids[]" value="<?php echo $row['ID']; ?>"></td>
-                <td><?php echo $row['first_name'] ?></td>
-                <td><?php echo $row['last_name'] ?></td>
-                <td><?php echo $row['middle_name'] ?></td>
-                <td><?php echo $row['course'] ?></td>
-                <td><?php echo $row['section'] ?></td>
-                <td><?php echo $row['year'] ?></td>
-                <td><?php echo $row['student_id_number'] ?></td>
-                <td>
-                    <!-- Update button -->
-                    <a href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Update</a>
-                    <!-- Delete button -->
-                    <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
-                        onclick="return confirm('Are you sure?')">Delete</a>
-                </td>
 
-            </tr>
-        <?php
-                }
-        ?>
-     
+            <?php
+            include('../06_FEATURES/search_module.php');
+            // search module to nasa seperated file para reusable 👍👍👍
+            while ($row = $result->fetch_assoc()) {
+            ?>
+                <tr>
+                    <td><input type="checkbox" name="delete_ids[]" value="<?php echo $row['ID']; ?>"></td>
+                    <td><?php echo $row['first_name'] ?></td>
+                    <td><?php echo $row['last_name'] ?></td>
+                    <td><?php echo $row['middle_name'] ?></td>
+                    <td><?php echo $row['course'] ?></td>
+                    <td><?php echo $row['section'] ?></td>
+                    <td><?php echo $row['year'] ?></td>
+                    <td><?php echo $row['student_id_number'] ?></td>
+                    <td>
+                        <!-- Update button -->
+                        <a href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Update</a>
+                        <!-- Delete button -->
+                        <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
+                            onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+
+                </tr>
+            <?php
+            }
+            ?>
+
         </table>
         <?php
         for ($i = 1; $i <= $total_pages; $i++) {
@@ -136,29 +142,12 @@ if (isset($_POST['delete_selected'])) {
         ?>
     </form>
 
-    <h1>Important Announcement</h1>
-    <?php
-    $query1 = "SELECT * FROM annoucement";
-    $result = mysqli_query($conn, $query1);
-    ?>
-    <div class="announce_wrapper">
+    <script>//pang animate lang to 
+        setTimeout(() => {
+            document.getElementById("msg").style.display = "none";
+        }, 2500);
+    </script>
 
-        <?php
-        while ($row = $result->fetch_assoc()) {
-        ?>
-            <div class="announce_content">
-                <?php
-                echo "<h1> {$row['headline']}</h1> ";
-                ?>
-                <div class="annouce_content1">
-                    <?php
-                    echo "<h2> {$row['information']} </h2>"
-                    ?>
-                </div>
-            </div>
-
-        <?php } ?>
-    </div>
 </body>
 
 </html>
