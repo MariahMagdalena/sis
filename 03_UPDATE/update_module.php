@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                       section='$section', 
                                       year='$year'
                                        WHERE ID=$id");
+        $_SESSION["message_validation"] = "Student {$fname} {$lname} Updated Successfully!";
         header("Location: ../05_GENERAL/welcome_module.php");
     }
 }

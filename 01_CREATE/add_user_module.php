@@ -20,7 +20,12 @@ if (isset($_POST['submit'])) {
 
         $stmt->execute();
         if ($stmt->affected_rows > 0) {
-            echo "<script>alert('New admin added successfully'); window.location.href='../welcome_module.php';</script>";
+            $action = "{$_SESSION["name"]} ADD new ADMIN with the name of $adminName";
+            $role = "admin";
+            include("../06_FEATURES/history_query.php");
+
+            $_SESSION["message_validation"] = "New admin added successfully!";
+            header("Location: ../05_GENERAL/welcome_module.php");
         } else {
             echo "<script>alert('Failed to add new admin');</script>";
         }

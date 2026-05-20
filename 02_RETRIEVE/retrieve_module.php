@@ -26,6 +26,7 @@ if (isset($_GET['ID'])) {
     $result = mysqli_query($conn, "DELETE from students_archive where ID='$id'");
 
     if ($result) {
+         $_SESSION["message_validation"] = "Student {$row['first_name']} {$row['last_name']} Retrieved Successfully!";
         header("Location: ../05_GENERAL/welcome_module.php");
     } else {
         echo "Failed to retrieve";

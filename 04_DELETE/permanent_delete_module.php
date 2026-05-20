@@ -16,6 +16,8 @@ if (isset($_GET['ID'])) {
         $role = 'admin';
         $action = "{$_SESSION['name']} PERMANENTLY DELETED $student_name";
         include('../06_FEATURES/history_query.php');
+
+        $_SESSION["message_validation"] = "Student $student_name Permanently Deleted Successfully!";
         header("Location: ../05_GENERAL/welcome_module.php");
     } else {
         echo "Failed to permanently delete";

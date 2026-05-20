@@ -78,7 +78,10 @@ if (isset($_POST['delete_selected'])) {
 
     <form action="" method="POST">
         <select name="search_column">
-            <option value="first_name">Search by Name</option>
+            <option value="student_id_number">Search Student ID</option>
+            <option value="first_name">Search by First Name</option>
+            <option value="middle_name">Search by Middle Name</option>
+            <option value="last_name">Search by Last Name</option>
             <option value="section">Search by Section</option>
             <option value="course">Search by Course</option>
         </select>
@@ -145,7 +148,7 @@ if (isset($_POST['delete_selected'])) {
     <script>//pang animate lang to 
         setTimeout(() => {
             document.getElementById("msg").style.display = "none";
-        }, 2500);
+        }, 4000);
     </script>
 
 </body>
