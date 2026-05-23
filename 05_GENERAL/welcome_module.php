@@ -93,9 +93,13 @@ if (isset($_POST['delete_selected'])) {
 
         <button type="submit" name="delete_selected" onclick="return confirm('Delete Selected Students?')">Delete Selected</button>
 
+        <?php  include('../06_FEATURES/search_module.php'); // search module to nasa seperated file para reusable 👍👍👍?>
+
+        <a href="../pdf_generate.php?search_col=<?php echo $col?>&search_val=<?php echo $row?>">Download File</a> 
+        <!-- pinasa ko ung value ng row and col as url parameter para magamit sa pdf generate tas  -->
         <h1>Students that are currently Enrolled</h1>
         <?php
-        if (isset($_SESSION['message_validation'])) {
+        if (isset($_SESSION['message_validation']) && !empty($_SESSION['message_validation'])) {
             echo "<div id='msg'>{$_SESSION['message_validation']}</div>";
             unset($_SESSION['message_validation']); }
         ?>
@@ -111,8 +115,6 @@ if (isset($_POST['delete_selected'])) {
             <th>Actions</th>
 
             <?php
-            include('../06_FEATURES/search_module.php');
-            // search module to nasa seperated file para reusable 👍👍👍
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
