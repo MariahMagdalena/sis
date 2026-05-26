@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (empty($pass)) {
         $error = "Password must not be empty";
     } else {
-
         $stmt = $conn->prepare("SELECT pass FROM users WHERE name = ?");
         $stmt->bind_param("s", $name);
         $stmt->execute();
@@ -61,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php } ?>
         <form action="login_module.php" method="POST">
             <label for="name">Username</label>
-            <input type="text" name="name" placeholder="Enter your username">
+            <input type="text" name="name" placeholder="Enter your username" required>
 
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Enter your password">
+            <input type="password" name="password" placeholder="Enter your password" required>
 
             <input type="submit" name="Log In" value="Login">
         </form>
