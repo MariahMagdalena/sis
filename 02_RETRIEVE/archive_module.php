@@ -68,7 +68,6 @@ include('../06_FEATURES/pagination.php');
             <tr>
                 <?php
                
-                include('../06_FEATURES/search_module.php'); 
                 // $query = "SELECT * FROM students_archive";
                 $result = mysqli_query($conn, $query);
                 while ($row = $result->fetch_assoc()) {

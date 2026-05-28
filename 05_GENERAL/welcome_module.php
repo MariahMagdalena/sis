@@ -77,69 +77,60 @@ if (isset($_POST['delete_selected'])) {
     </form>
 
     <form action="" method="POST">
-        <select name="search_column">
-            <option value="student_id_number">Search Student ID</option>
-            <option value="first_name">Search by First Name</option>
-            <option value="middle_name">Search by Middle Name</option>
-            <option value="last_name">Search by Last Name</option>
-            <option value="section">Search by Section</option>
-            <option value="course">Search by Course</option>
-        </select>
-
-        <input type="text" name="search_value" placeholder="Type here...">
-
-        <button type="submit" name="submit_search">Search</button>
-        <a href="welcome_module.php"><button type="button">Reset</button></a>
+        <input type="text" id="search" placeholder="Search names..." onkeyup="liveSearch(this.value)">
+        <a href="welcome_module.php">Reset</a>
 
         <button type="submit" name="delete_selected" onclick="return confirm('Delete Selected Students?')">Delete Selected</button>
 
-        <?php  include('../06_FEATURES/search_module.php'); // search module to nasa seperated file para reusable 👍👍👍?>
 
-        <a href="../pdf_generate.php?search_col=<?php echo $col?>&search_val=<?php echo $row?>">Download File</a> 
+        <!-- <a href="../pdf_generate.php?search_col=<?php //echo $col ?>&search_val=<?php //echo $row ?>">Download File</a> -->
         <!-- pinasa ko ung value ng row and col as url parameter para magamit sa pdf generate tas  -->
         <h1>Students that are currently Enrolled</h1>
         <?php
         if (isset($_SESSION['message_validation']) && !empty($_SESSION['message_validation'])) {
             echo "<div id='msg'>{$_SESSION['message_validation']}</div>";
-            unset($_SESSION['message_validation']); }
+            unset($_SESSION['message_validation']);
+        }
         ?>
-        <table border="1">
-            <th>Select</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Middle Name</th>
-            <th>Course</th>
-            <th>Section</th>
-            <th>Year</th>
-            <th>Student Id #</th>
-            <th>Actions</th>
+        <div id="results">
+            <table border="1">
+                <th>Select</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Course</th>
+                <th>Section</th>
+                <th>Year</th>
+                <th>Student Id #</th>
+                <th>Actions</th>
 
-            <?php
-            while ($row = $result->fetch_assoc()) {
-            ?>
-                <tr>
-                    <td><input type="checkbox" name="delete_ids[]" value="<?php echo $row['ID']; ?>"></td>
-                    <td><?php echo $row['first_name'] ?></td>
-                    <td><?php echo $row['last_name'] ?></td>
-                    <td><?php echo $row['middle_name'] ?></td>
-                    <td><?php echo $row['course'] ?></td>
-                    <td><?php echo $row['section'] ?></td>
-                    <td><?php echo $row['year'] ?></td>
-                    <td><?php echo $row['student_id_number'] ?></td>
-                    <td>
-                        <!-- Update button -->
-                        <a href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Update</a>
-                        <!-- Delete button -->
-                        <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
-                            onclick="return confirm('Are you sure?')">Delete</a>
-                    </td>
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                    <tr>
+                        <td><input type="checkbox" name="delete_ids[]" value="<?php echo $row['ID']; ?>"></td>
+                        <td><?php echo $row['first_name'] ?></td>
+                        <td><?php echo $row['last_name'] ?></td>
+                        <td><?php echo $row['middle_name'] ?></td>
+                        <td><?php echo $row['course'] ?></td>
+                        <td><?php echo $row['section'] ?></td>
+                        <td><?php echo $row['year'] ?></td>
+                        <td><?php echo $row['student_id_number'] ?></td>
+                        <td>
+                            <!-- Update button -->
+                            <a href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Update</a>
+                            <!-- Delete button -->
+                            <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
+                                onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
 
-                </tr>
-            <?php
-            }
-            ?>
+                    </tr>
+                <?php
+                }
+                ?>
 
-        </table>
+            </table>
+        </div>
         <?php
         for ($i = 1; $i <= $total_pages; $i++) {
             echo "<a href='welcome_module.php?page=$i&numrow=$limit'>$i</a> ";
@@ -147,10 +138,24 @@ if (isset($_POST['delete_selected'])) {
         ?>
     </form>
 
-    <script>//pang animate lang to 
+    <script>
+        //pang animate lang to 
         setTimeout(() => {
             document.getElementById("msg").style.display = "none";
         }, 4000);
+
+        function liveSearch(query) {
+            if (query.length == 0) {
+                 window.location.href = "welcome_module.php";
+                return;
+            }
+            // AJAX request to PHP script
+            fetch("../06_FEATURES/search.php?q=" + query)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("results").innerHTML = data;
+                });
+        }
     </script>
 
 </body>
