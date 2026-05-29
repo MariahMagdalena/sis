@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-            if ($pass == $row['pass']) {
+            if (password_verify($pass,$row['pass'])) {
                 $_SESSION["name"] = $name;
                 $_SESSION["message_validation"] = "";
                 $action = "Logged In";

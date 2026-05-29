@@ -2,7 +2,7 @@
 session_start();
 include("../connection_db.php");
 include('../header.html');
-include('../auth.php');
+// include('../auth.php');
 $adminName = "";
 $pass = "";
 $confirm_pass = "";
@@ -15,17 +15,19 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
 
     if ($pass == $confirm_pass) {
+        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (name,email,pass) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $adminName, $email, $pass);
+        $stmt->bind_param("sss", $adminName, $email, $hashed_password);
 
         $stmt->execute();
         if ($stmt->affected_rows > 0) {
-            $action = "{$_SESSION["name"]} ADD new ADMIN with the name of $adminName";
-            $role = "admin";
-            include("../06_FEATURES/history_query.php");
+         //   $action = "{$_SESSION["name"]} ADD new ADMIN with the name of $adminName";
+         //   $role = "admin";
+         //   include("../06_FEATURES/history_query.php");
 
             $_SESSION["message_validation"] = "New admin added successfully!";
             header("Location: ../05_GENERAL/welcome_module.php");
+            exit;
         } else {
             echo "<script>alert('Failed to add new admin');</script>";
         }
@@ -53,10 +55,10 @@ if (isset($_POST['submit'])) {
         <input type="email" name="email" value="<?php echo $email ?>" placeholder="Enter Admin email address" required>
 
         <label for="pass">Password:</label>
-        <input type="password" name="pass" value="<?php echo $pass ?>" placeholder="Enter Admin password" required>
+        <input type="password" name="pass" placeholder="Enter Admin password" required>
 
         <label for="confirm_pass">Confirm Password:</label>
-        <input type="password" name="confirm_pass" value="<?php echo $confirm_pass ?>" placeholder="Confirm Admin password" required>
+        <input type="password" name="confirm_pass" placeholder="Confirm Admin password" required>
 
         <input type="submit" name="submit" value="Enter">
     </form>
