@@ -81,12 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="mname">Student Id Number</label>
         <input type="text" name="studentID" placeholder="YYYY-XXXXX-MN-0" required>
 
-        <label for="course">Course</label>
+        <label for="course">Specialization</label>
         <select name="course">
-            <option value="DCPET" <?php if ($course == "DCPET")  echo "selected"; ?>>DCPET</option>
-            <option value="DCVET" <?php if ($course == "DCVET") echo "selected"; ?>>DCVET</option>
-            <option value="DMET" <?php if ($course == "DMET") echo "selected"; ?>>DMET</option>
-            <option value="DIT" <?php if ($course == "DIT") echo "selected"; ?>>DIT</option>
+            <option value="PROGRAMMING" <?php if ($course == "PROGRAMMING")  echo "selected"; ?>>PROGRAMMING</option>
+            <option value="COMPUTER SERVICING SYSTEMS" <?php if ($course == "COMPUTER SERVICING SYSTEMS") echo "selected"; ?>>COMPUTER SERVICING SYSTEMS</option>
+            <option value="ANIMATION" <?php if ($course == "ANIMATION") echo "selected"; ?>>ANIMATION</option>
+            <option value="ELECTRONICS" <?php if ($course == "ELECTRONICS") echo "selected"; ?>>ELECTRONICS</option>
         </select>
 
         <label for="section">Section</label>
@@ -98,9 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="year">Year</label>
         <select name="year">
-            <option value="1" <?php if ($year == "2")  echo "selected"; ?>>1</option>
-            <option value="2" <?php if ($year == "2")  echo "selected"; ?>>2</option>
-            <option value="3" <?php if ($year == "2")  echo "selected"; ?>>3</option>
+            <option value="11" <?php if ($year == "11")  echo "selected"; ?>>11</option>
+            <option value="12" <?php if ($year == "12")  echo "selected"; ?>>12</option>
         </select>
 
         <?php echo $validate; ?>

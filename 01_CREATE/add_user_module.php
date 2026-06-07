@@ -21,9 +21,9 @@ if (isset($_POST['submit'])) {
 
         $stmt->execute();
         if ($stmt->affected_rows > 0) {
-         //   $action = "{$_SESSION["name"]} ADD new ADMIN with the name of $adminName";
-         //   $role = "admin";
-         //   include("../06_FEATURES/history_query.php");
+           $action = "{$_SESSION["name"]} ADD new ADMIN with the name of $adminName";
+           $role = "admin";
+           include("../06_FEATURES/history_query.php");
 
             $_SESSION["message_validation"] = "New admin added successfully!";
             header("Location: ../05_GENERAL/welcome_module.php");
@@ -63,6 +63,8 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Enter">
     </form>
 </body>
+
+h1
 
 </html>
 

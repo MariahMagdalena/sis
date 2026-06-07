@@ -150,6 +150,7 @@ if (isset($_POST['delete_selected'])) {
                 return;
             }
             // AJAX request to PHP script
+           
             fetch("../06_FEATURES/search.php?q=" + query)
                 .then(response => response.text())
                 .then(data => {
