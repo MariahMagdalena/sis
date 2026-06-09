@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="course">Specialization</label>
         <select name="course">
             <option value="PROGRAMMING" <?php if ($course == "PROGRAMMING")  echo "selected"; ?>>PROGRAMMING</option>
-            <option value="COMPUTER SERVICING SYSTEMS" <?php if ($course == "COMPUTER SERVICING SYSTEMS") echo "selected"; ?>>COMPUTER SERVICING SYSTEMS</option>
+            <option value="COMPUTER SERVICING SYSTEM" <?php if ($course == "COMPUTER SERVICING SYSTEM") echo "selected"; ?>>COMPUTER SERVICING SYSTEM</option>
             <option value="ANIMATION" <?php if ($course == "ANIMATION") echo "selected"; ?>>ANIMATION</option>
             <option value="ELECTRONICS" <?php if ($course == "ELECTRONICS") echo "selected"; ?>>ELECTRONICS</option>
         </select>

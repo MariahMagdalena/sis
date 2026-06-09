@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEADER</title>
-    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<style>
-  
-</style>
 <body>
-    <div class="nav">
+    <nav class="nav">
         <ul>
-            <li><a href="../05_GENERAL/welcome_module.php">HOME</a></li>
-            <li><a href="../01_CREATE/add_module.php">ADD STUDENT</a></li>
-            <li><a href="../01_CREATE/add_user_module.php">ADD USER</a></li>
-            <li><a href="../02_RETRIEVE/archive_module.php">ARCHIVE</a></li>
-            <li><a href="../06_FEATURES/history_module.php">HISTORY</a></li>
-            <li class="logout"><a href="../05_GENERAL/logout_module.php">LOG OUT</a></li>
+            <li><a href="../05_GENERAL/welcome_module.php">🏠 Home</a></li>
+            <li><a href="../01_CREATE/add_module.php">➕ Add Student</a></li>
+            <li><a href="../01_CREATE/add_user_module.php">👤 Add User</a></li>
+            <li><a href="../02_RETRIEVE/archive_module.php">🗄 Archive</a></li>
+            <li><a href="../06_FEATURES/history_module.php">📋 History</a></li>
+            <li class="logout">
+                <a href="../05_GENERAL/logout_module.php"
+                   onclick="return confirm('Are you sure you want to log out?')">Log Out</a>
+            </li>
         </ul>
-    </div>
+    </nav>
 </body>
 </html>

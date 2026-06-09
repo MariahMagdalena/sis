@@ -5,7 +5,6 @@ include 'connection_db.php';
 include 'fpdf186/fpdf.php';
 
 $row_data = $_GET['search_val'];
-$col_data = $_GET['search_col'];
 
 $pdf = new FPDF();
 $pdf->SetFont('Arial', 'B', 18);
@@ -28,8 +27,16 @@ $pdf->Ln();
 
 $query = "SELECT * FROM students";
 
-if(!empty($row_data) && !empty($col_data)){
-    $query = "SELECT * FROM students WHERE $col_data LIKE '%$row_data%'";
+if (!empty($row_data)) {
+    $query = "SELECT * FROM students
+              WHERE
+                ID LIKE '%$row_data%' OR
+                first_name LIKE '%$row_data%' OR
+                last_name LIKE '%$row_data%' OR
+                middle_name LIKE '%$row_data%' OR
+                course LIKE '%$row_data%' OR
+                section LIKE '%$row_data%' OR
+                student_id_number LIKE '%$row_data%'";
 }
 $query1 = mysqli_query($conn, $query);
 

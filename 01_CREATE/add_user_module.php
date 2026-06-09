@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles.css">
     <title>Document</title>
 </head>
 
@@ -63,8 +63,6 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Enter">
     </form>
 </body>
-
-h1
 
 </html>
 

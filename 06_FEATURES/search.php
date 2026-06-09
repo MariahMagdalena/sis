@@ -16,7 +16,7 @@ $sql =  "SELECT * FROM students
 $result = $conn->query($sql);
 
 echo "<table>";
-echo "<th>" . "Select" . "</th>";
+echo "<th>" . "<input type='checkbox' id='select_all' onclick='toggleAll(this)'>" . "</th>";
 echo "<th>" . "First Name" . "</th>";
 echo "<th>" . "Last Name" . "</th>";
 echo "<th>" . "Middle Name" . "</th>";
