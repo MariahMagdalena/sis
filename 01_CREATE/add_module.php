@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $year = trim($_POST["year"]);
     $stID = trim($_POST['studentID']);
 
-    if (!preg_match('/^\d{4}-\d{5}-MN-0$/', $stID)) {
-        $validate = "Invalid format. Use: YYYY-12345-MN-0";
+    if (!preg_match('/^\d{12}$/', $stID)) {
+        $validate = "Invalid LRN. Must contain exactly 12 digits.";
     } else {
         $stmt = $conn->prepare("INSERT INTO students 
                            (student_id_number, first_name, last_name, middle_name, course, section, year) 
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->bind_param("sssssss", $stID, $fname, $lname, $mname, $course, $section, $year);
 
-        try {//try catch block to handle duplicate entry of student id number, since it is unique in the database
+        try { //try catch block to handle duplicate entry of student id number, since it is unique in the database
             if ($stmt->execute()) {
                 $validate =  "Student added successfully!";
                 $role = 'admin';
@@ -63,12 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
     <title>ADD</title>
 </head>
 
 <body>
-    <h1>ADD NEW STUDENTS</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+    <div class="page-wrapper">
+        <div class="form-page-wrapper">
+            <div class="form-card">
+                <h1>Add New Student</h1>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
         <label for="fname">First Name</label>
         <input type="text" name="fname" value="<?php echo $fname ?>" placeholder="Enter first name" required>
 
@@ -79,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="mname" value="<?php echo $mname ?>" placeholder="Enter middle name" required>
 
         <label for="mname">Student Id Number</label>
-        <input type="text" name="studentID" placeholder="YYYY-XXXXX-MN-0" required>
+        <input type="text" name="studentID" placeholder="000000000000" required>
 
         <label for="course">Specialization</label>
         <select name="course">
@@ -102,10 +106,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="12" <?php if ($year == "12")  echo "selected"; ?>>12</option>
         </select>
 
-        <?php echo $validate; ?>
+        <?php if ($validate): ?>
+            <p class="validate-msg"><?php echo $validate; ?></p>
+        <?php endif; ?>
 
-        <input type="submit" name="submit" value="Submit">
-    </form>
+                    <input type="submit" name="submit" value="Submit">
+                </form>
+                <a class="back-link" href="../05_GENERAL/welcome_module.php">&larr; Back to student list</a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

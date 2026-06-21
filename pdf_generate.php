@@ -1,6 +1,6 @@
 <?php
-
-//include 'auth.php';
+session_start();
+include 'auth.php';
 include 'connection_db.php';
 include 'fpdf186/fpdf.php';
 

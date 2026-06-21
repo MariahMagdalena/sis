@@ -37,7 +37,7 @@ if (isset($_POST['delete_selected'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student List — PUP</title>
+    <title>Student List</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -49,7 +49,7 @@ if (isset($_POST['delete_selected'])) {
             <div class="avatar"><?php echo strtoupper(substr($_SESSION['name'], 0, 1)); ?></div>
             <div class="text">
                 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?>!</h2>
-                <p>Polytechnic University of the Philippines — Student Information System</p>
+                <p>Student Information System</p>
             </div>
         </div>
 
@@ -71,15 +71,13 @@ if (isset($_POST['delete_selected'])) {
                             <option value="30" <?php if ($limit == 30) echo "selected"; ?>>30</option>
                         </select>
 
-                        <a href="welcome_module.php" class="btn-reset">↺ Reset</a>
 
                         <button type="submit" name="delete_selected" onclick="return confirm('Delete selected students?')">
                             🗑 Delete Selected
                         </button>
-                    </div>
 
-                    <a href="../pdf_generate.php" id="pdfLink">⬇ Download PDF</a>
-
+                    </div>                    
+                    <a style="background:#d6d61c6e; color: crimson;" href="../pdf_generate.php" id="pdfLink">⬇ Download PDF</a>
                 </div>
             </div>
 
@@ -100,10 +98,10 @@ if (isset($_POST['delete_selected'])) {
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Middle Name</th>
-                            <th>Course</th>
+                            <th>Specialization</th>
                             <th>Section</th>
-                            <th>Year</th>
-                            <th>Student ID #</th>
+                            <th>Grade Level</th>
+                            <th>LRN</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -119,9 +117,11 @@ if (isset($_POST['delete_selected'])) {
                                 <td><?php echo htmlspecialchars($row['year']); ?></td>
                                 <td><?php echo htmlspecialchars($row['student_id_number']); ?></td>
                                 <td>
-                                    <a href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Edit</a>
-                                    <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
-                                        onclick="return confirm('Are you sure?')">Delete</a>
+                                    <div class="row-actions">
+                                        <a name = "edit_module" href="../03_UPDATE/update_module.php?ID=<?php echo $row['ID']; ?>">Edit</a>
+                                        <a href="../04_DELETE/delete_module.php?ID=<?php echo $row['ID']; ?>"
+                                            onclick="return confirm('Are you sure?')">Delete</a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -163,7 +163,7 @@ if (isset($_POST['delete_selected'])) {
                 window.location.href = "welcome_module.php";
                 return;
             }
-            fetch("../06_FEATURES/search.php?q=" + encodeURIComponent(query))
+            fetch("../06_FEATURES/search.php?q=" + encodeURIComponent(query) + "&d=<?php echo 1; ?>")
                 .then(r => r.text())
                 .then(data => document.getElementById("results").innerHTML = data);
         }
